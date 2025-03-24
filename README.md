@@ -18,10 +18,11 @@ Now you want JetSearch to include this attribute in search results.
 To do this, open the plugin JetSearch – Search by Custom Attributes and edit the list of custom attributes in the following code snippet:
 
 ```php
-add_filter( 'jet_search_available_taxonomies', function( $taxonomies ) {
+public function add_custom_attribute_taxonomies( $taxonomies ) {
     $taxonomies['attribute_quality'] = 'Custom: Quality';
+
     return $taxonomies;
-} );
+}
 ```
 You can add more attributes in the same way, for example:
 
