@@ -2,7 +2,7 @@
 /**
  * Plugin Name: JetSearch – Search by Custom Attributes
  * Description: Enables JetSearch to search by custom WooCommerce product attributes.
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Crocoblock
  * Author URI: https://crocoblock.com/
  * License: GPL-2.0+
