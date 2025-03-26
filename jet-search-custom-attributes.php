@@ -48,16 +48,17 @@ class Jet_Search_Custom_Attributes {
 	}
 
 	/**
-	 * Add manually defined custom product attributes to JetSearch taxonomy selector.
+	 * Add custom attributes defined via filter to the JetSearch taxonomy list.
 	 *
-	 * @param array $taxonomies Existing list of available taxonomies.
-	 *
-	 * @return array Modified taxonomy list with custom attributes.
+	 * @param array $taxonomies
+	 * @return array
 	 */
 	public function add_custom_attribute_taxonomies( $taxonomies ) {
-		$taxonomies['attribute_quality'] = 'Custom: Quality';
-		$taxonomies['attribute_brand']   = 'Custom: Brand';
-		// Add more custom attributes as needed.
+		$custom = apply_filters( 'jet_search/custom_attributes_list', [] );
+
+		foreach ( $custom as $key => $label ) {
+			$taxonomies[ 'attribute_' . $key ] = $label;
+		}
 
 		return $taxonomies;
 	}

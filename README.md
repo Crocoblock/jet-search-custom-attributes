@@ -6,7 +6,7 @@ This plugin allows you to include manually defined attributes in the JetSearch w
 ## How It Works
 
 - Custom attributes that are not taxonomy-based are stored as part of the product's metadata
-- This plugin allows you to **manually define** which attributes should be searchable
+- This plugin allows you to define which attributes should be searchable via a filter
 - JetSearch will treat them as “taxonomies” in its widget dropdown
 
 ## Example Use Case
@@ -15,25 +15,20 @@ You create a custom product attribute called `quality` in the admin and set its 
 
 Now you want JetSearch to include this attribute in search results.
 
-To do this, open the plugin JetSearch – Search by Custom Attributes and edit the list of custom attributes in the following code snippet:
+To do this, use the following snippet in your `functions.php` file or a custom plugin:
 
 ```php
-public function add_custom_attribute_taxonomies( $taxonomies ) {
-    $taxonomies['attribute_quality'] = 'Custom: Quality';
-
-    return $taxonomies;
-}
-```
-You can add more attributes in the same way, for example:
-
-```php
-$taxonomies['attribute_brand'] = 'Custom: Brand';
+add_filter( 'jet_search/custom_attributes_list', function() {
+    return [
+        'quality' => 'Custom: Quality',
+    ];
+} );
 ```
 
 Once this is done, go to the JetSearch widget settings and:
 
-Enable Search in taxonomy terms
+Enable `Search in taxonomy terms`
 
-Select Custom: Quality in the list
+Select `Custom: Quality` in the list
 
 Now, when a user types "high" into the search bar, products with quality = high will appear in the results.
